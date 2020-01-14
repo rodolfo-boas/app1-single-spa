@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'rod-root',
+  selector: 'micro-rod-app1',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
