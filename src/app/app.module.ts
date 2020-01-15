@@ -18,6 +18,7 @@ const ROUTES_MICRO_APP: Routes = [
     component: EmptyRouteComponent
   }
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,10 +29,12 @@ const ROUTES_MICRO_APP: Routes = [
     BrowserModule,
     RouterModule.forRoot(ROUTES_MICRO_APP)
   ],
-  providers: [    {
-    provide: APP_BASE_HREF,
-    useValue: environment.appBaseHref // tem que ser a mesma route do base-app
-  }],
+  providers: [
+  //   {
+  //   provide: APP_BASE_HREF,
+  //   useValue: environment.appBaseHref // tem que ser a mesma route do base-app
+  // }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
