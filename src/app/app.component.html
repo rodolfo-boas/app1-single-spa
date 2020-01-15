@@ -2,13 +2,15 @@
   Welcome to poc {{ title }}!
 </h1>
 
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-  <input name="first" ngModel required #first="ngModel">
-  <input name="last" ngModel>
-  <button>Submit</button>
+<form #f="ngForm">
+  <label for="foo">foo:</label>
+  <input type="text" id="foo" name="foo" [(ngModel)]="fooValue">
+  <button type="button" (click)="setFooValue(fooValue)">set foo</button>
 </form>
 
-<button (click)="lerObservable()">ler observable</button>
+<br>
+<br>
+
 <a routerLink="/app2">go to app2</a>
 
 <router-outlet></router-outlet>

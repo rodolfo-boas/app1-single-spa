@@ -1,34 +1,46 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { restoreView } from '@angular/core/src/render3';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { singleSpaPropsSubject } from "../single-spa/single-spa-props";
+
 
 @Component({
   selector: 'micro-rod-app1',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-
-
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'app1';
 
-  valorForm: BehaviorSubject<any> = new BehaviorSubject(null);
-  valorForm$: Observable<any> = this.valorForm.asObservable();
+  /**
+   * Get singleSpaProps
+   */
+  spaPropsSubscription: Subscription = null;
 
-  onSubmit(f: NgForm) {
-    console.log(f)
-    console.log(f.value);  // { first: '', last: '' }
-    console.log(f.valid);  // false
-    this.valorForm.next(f.value)
+  /**
+   * Form
+   */
+  fooValue = '';
+  setFooValueFn;
+  setFooValue(value: string): void {
+    this.setFooValueFn(value);
   }
 
-  lerObservable() {
-    this.valorForm$.subscribe(
-      retorno => {
-        console.log(retorno)
+
+  // Lifecycle
+  ngOnInit() {
+    console.log('app1/ngOnInit');
+    this.spaPropsSubscription = singleSpaPropsSubject.asObservable().subscribe(
+      (props: any) => {
+        console.log('spa props', props);
+        this.setFooValueFn = props.setFoo;
+      },
+      err => {
+        console.error('spaPropsSubscription FAILED!', err.message)
       }
-    )
+    );
   }
 
+  ngOnDestroy() {
+    this.spaPropsSubscription.unsubscribe();
+  }
 }
