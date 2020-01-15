@@ -2,7 +2,12 @@
   Welcome to poc {{ title }}!
 </h1>
 
-  
-<a routerLink="/app2">go to  app2</a>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <input name="first" ngModel required #first="ngModel">
+  <input name="last" ngModel>
+  <button>Submit</button>
+</form>
+
+<a routerLink="/app2">go to app2</a>
 
 <router-outlet></router-outlet>

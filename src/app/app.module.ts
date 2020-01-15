@@ -7,6 +7,7 @@ import { EmptyRouteComponent } from './empty-route/empty-route.component';
 import { Exemplo1Component } from './exemplo1/exemplo1.component';
 import { environment } from 'src/environments/environment';
 import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 const ROUTES_MICRO_APP: Routes = [
   {
@@ -27,6 +28,7 @@ const ROUTES_MICRO_APP: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES_MICRO_APP)
   ],
   providers: [
