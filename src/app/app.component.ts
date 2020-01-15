@@ -20,7 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
    * Form
    */
   fooValue = '';
+
   setFooValueFn;
+
   setFooValue(value: string): void {
     this.setFooValueFn(value);
   }
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // Lifecycle
   ngOnInit() {
     console.log('app1/ngOnInit');
-    this.spaPropsSubscription = singleSpaPropsSubject.asObservable().subscribe(
+    this.spaPropsSubscription = singleSpaPropsSubject.subscribe(
       (props: any) => {
         console.log('spa props', props);
         this.setFooValueFn = props.setFoo;
